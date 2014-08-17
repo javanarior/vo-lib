@@ -353,4 +353,23 @@
 
     </profiles>
 
+
+
+
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-javanarior-maven</id>
+            <name>javanarior-maven-javanarior-oss-pom</name>
+            <url>https://api.bintray.com/maven/javanarior/maven/${project.artifactId}</url>
+        </repository>
+        <snapshotRepository>
+            <id>output-directory</id>
+            <name>output-directory</name>
+            <url>file:///${project.build.directory}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+
 </project>
