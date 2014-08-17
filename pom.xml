@@ -1,0 +1,356 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.javanarior</groupId>
+        <artifactId>javanarior-oss-pom</artifactId>
+        <version>2</version>
+    </parent>
+
+    <groupId>de.javanarior.library</groupId>
+    <artifactId>vo-lib</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>ValueObject Library</name>
+    <description>Library to avoid write wrapper for value object again and again.</description>
+    <url>https://github.com/javanarior/${project.artifactId}</url>
+
+
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <inceptionYear>2014</inceptionYear>
+
+
+
+    <developers>
+        <developer>
+            <name>Sven</name>
+            <email>javanarior (a) gmail dot com</email>
+            <organizationUrl>https://github.com/javanarior</organizationUrl>
+        </developer>
+    </developers>
+
+
+
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <javanarior-build-resources.version>2-SNAPSHOT</javanarior-build-resources.version>
+    </properties>
+
+
+
+    <scm>
+        <url>scm:https://github.com/javanarior/${project.artifactId}.git</url>
+        <connection>scm:https://github.com/javanarior/${project.artifactId}.git</connection>
+        <developerConnection>scm:git:git@github.com:javanarior/${project.artifactId}.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/javanarior/${project.artifactId}/issues</url>
+    </issueManagement>
+
+
+
+<!--     <ciManagement> -->
+<!--         <system>Jenkins</system> -->
+<!--         <url>http://jenkins:8082/job/${project.artifactId}</url> -->
+<!--     </ciManagement> -->
+
+
+
+    <dependencies>
+        <!-- Also listed as dependency to automate update. -->
+        <dependency>
+            <groupId>de.javanarior</groupId>
+            <artifactId>javanarior-build-resources</artifactId>
+            <version>${javanarior-build-resources.version}</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+
+
+
+    <build>
+        <!-- Configuration files for Checkstyle, FindBugs and PMD. -->
+        <extensions>
+            <extension>
+                <groupId>de.javanarior</groupId>
+                <artifactId>javanarior-build-resources</artifactId>
+                <version>${javanarior-build-resources.version}</version>
+            </extension>
+        </extensions>
+
+
+
+        <pluginManagement>
+            <plugins>
+            <!-- Reporting -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>de.javanarior</groupId>
+                            <artifactId>javanarior-build-resources</artifactId>
+                            <version>${javanarior-build-resources.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <configLocation>checkstyle/javanarior-checkstyle.xml</configLocation>
+                        <suppressionsLocation>checkstyle/javanarior-checkstyle-suppress.xml</suppressionsLocation>
+<!--                         <includeTestSourceDirectory>true</includeTestSourceDirectory> -->
+<!--                        <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression> -->
+                        <propertyExpansion>checkstyle.suppressions.file=${checkstyle.suppressions.location}</propertyExpansion>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>checkstyle</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>checkstyle</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <parallel>class</parallel>
+                    <threadCount>10</threadCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </reporting>
+
+
+
+
+
+    <profiles>
+        <profile>
+
+            <id>qa-checkstyle</id>
+
+            <activation>
+                <property>
+                    <name>build</name>
+                    <value>qa</value>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                    </plugin>
+
+                </plugins>
+            </build>
+
+        </profile>
+
+
+
+<!--         <profile> -->
+
+<!--             <id>qa-pmd</id> -->
+
+<!--             <activation> -->
+<!--                 <property> -->
+<!--                     <name>build</name> -->
+<!--                     <value>qa</value> -->
+<!--                 </property> -->
+<!--             </activation> -->
+
+<!--             <build> -->
+<!--                 <plugins> -->
+
+<!--                     <plugin> -->
+<!--                         <artifactId>maven-pmd-plugin</artifactId> -->
+
+<!--                         <configuration> -->
+<!--                             <includeTests>true</includeTests> -->
+<!--                             <targetJdk>${java.version.source}</targetJdk> -->
+<!--                             <linkXref>true</linkXref> -->
+<!--                             <rulesets> -->
+<!--                                 <ruleset>pmd/javanarior-pmd.xml</ruleset> -->
+<!--                             </rulesets> -->
+<!--                             <excludes> -->
+<!--                                 <exclude>**/generated/*</exclude> -->
+<!--                                 <exclude>**/generated-sources/*.java</exclude> -->
+<!--                             </excludes> -->
+<!--                         </configuration> -->
+
+<!--                         <executions> -->
+<!--                             <execution> -->
+<!--                                 <id>pmd/cpd-analysis</id> -->
+<!--                                 <phase>verify</phase> -->
+<!--                                 <goals> -->
+<!--                                     <goal>pmd</goal> -->
+<!--                                     <goal>cpd</goal> -->
+<!--                                 </goals> -->
+<!--                             </execution> -->
+<!--                         </executions> -->
+<!--                     </plugin> -->
+
+<!--                 </plugins> -->
+<!--             </build> -->
+
+<!--         </profile> -->
+
+
+
+<!--         <profile> -->
+
+<!--             <id>qa-findbugs</id> -->
+
+<!--             <activation> -->
+<!--                 <property> -->
+<!--                     <name>build</name> -->
+<!--                     <value>qa</value> -->
+<!--                 </property> -->
+<!--             </activation> -->
+
+<!--             <build> -->
+<!--                 <plugins> -->
+
+<!--                     <plugin> -->
+<!--                         <groupId>org.codehaus.mojo</groupId> -->
+<!--                         <artifactId>findbugs-maven-plugin</artifactId> -->
+
+<!--                         <configuration> -->
+<!--                             <failOnError>false</failOnError> -->
+<!--                             <includeTests>true</includeTests> -->
+<!--                             <includeFilterFile>findbugs/javanarior-findbugs.xml</includeFilterFile> -->
+<!--                         </configuration> -->
+
+<!--                         <executions> -->
+<!--                             <execution> -->
+<!--                                 <id>findbugs-analysis</id> -->
+<!--                                 <phase>verify</phase> -->
+<!--                                 <goals> -->
+<!--                                     <goal>findbugs</goal> -->
+<!--                                 </goals> -->
+<!--                             </execution> -->
+<!--                         </executions> -->
+<!--                     </plugin> -->
+
+<!--                 </plugins> -->
+<!--             </build> -->
+
+<!--         </profile> -->
+
+
+
+        <profile>
+
+            <id>qa-coverage</id>
+
+            <activation>
+                <property>
+                    <name>build</name>
+                    <value>qa</value>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+
+                            <execution>
+                                <id>report</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+
+        </profile>
+
+
+        <profile>
+            <id>m2e</id>
+   <!-- This profile is only activated when building in Eclipse with m2e -->
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+
+                    <plugin>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+
+
+        </profile>
+
+    </profiles>
+
+</project>
