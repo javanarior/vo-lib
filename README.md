@@ -1,7 +1,7 @@
 vo-lib
 ======
 
-Value Object Library.
+Value Object Library. [![Build Status](https://travis-ci.org/javanarior/vo-lib.svg?branch=master)](https://travis-ci.org/javanarior/vo-lib)
 
 You will find the artefact in:
 
