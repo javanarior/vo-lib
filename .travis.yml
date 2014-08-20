@@ -1,3 +1,5 @@
 language: java
 jdk: oraclejdk7
-script: mvn clean verify --system .settings.xml
+before_script: mvn --system .settings.xml clean
+script: mvn --system .settings.xml verify
+
