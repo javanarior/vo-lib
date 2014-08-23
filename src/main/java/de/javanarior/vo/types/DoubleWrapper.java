@@ -27,6 +27,11 @@ public abstract class DoubleWrapper<T extends Value<T>> extends AbstractValue<T>
 
     /**
      * Create Double Type with double value.
+     *
+     * @param metaType
+     *            - the value type
+     * @param value
+     *            - value for the object
      */
     protected DoubleWrapper(Class<T> metaType, double value) {
         super(metaType);

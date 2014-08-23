@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.LongValue;
@@ -32,24 +35,24 @@ public class LongWrapperTest {
     private static final OtherLongValue OTHER_TYPE_ONE = new OtherLongValueImpl(1L);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsPrimitiveLong() {
-        Assert.assertEquals(ONE.asPrimitiveLong(), 1);
-        Assert.assertEquals(1, ONE.asPrimitiveLong());
+        assertEquals(ONE.asPrimitiveLong(), 1);
+        assertEquals(1, ONE.asPrimitiveLong());
     }
 
     public void testAsLong() {
-        Assert.assertEquals(ONE.asLong(), Long.valueOf(1));
-        Assert.assertEquals(Long.valueOf(1), ONE.asLong());
+        assertEquals(ONE.asLong(), Long.valueOf(1));
+        assertEquals(Long.valueOf(1), ONE.asLong());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
     }
 
 }

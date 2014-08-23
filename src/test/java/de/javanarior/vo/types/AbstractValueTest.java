@@ -15,24 +15,143 @@
  */
 package de.javanarior.vo.types;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test
 public class AbstractValueTest {
 
-    public void testIntegerCasting() {
-        // Street string = TypeString.create(Street.class, 12);
-        // Assert.assertEquals(string.asInt(), 12);
-        // Assert.assertEquals(string.asInteger(), Integer.valueOf(12));
+    private AbstractValueImpl testee;
+
+    @BeforeMethod
+    public void setUp() {
+        testee = new AbstractValueImpl(AbstractValueImpl.class, "12");
     }
 
-    public void testStringCasting() {
-        // StreetNumber integer = TypeInteger.create(StreetNumber.class, 12);
-        // StringValue integer = TypeInteger.create(StringValue.class, 12);
-        // StringValue integerAsString = TypeInteger.create(StringValue.class,
-        // "12");
-        // Street integer = TypeInteger.create(Street.class, "12");
-        // Assert.assertEquals(integer.asString(), "12");
+    public void testAsBoolean() {
+        testee = new AbstractValueImpl(AbstractValueImpl.class, "true");
+        Boolean asBoolean = testee.asBoolean();
+        assertEquals(asBoolean.getClass(), Boolean.class);
+        assertEquals(asBoolean, Boolean.TRUE);
     }
 
+    public void testAsPrimitiveBoolean() {
+        testee = new AbstractValueImpl(AbstractValueImpl.class, "true");
+        boolean asBoolean = testee.asPrimitiveBoolean();
+        assertEquals(asBoolean, true);
+    }
+
+    public void testAsByte() {
+        Byte asByte = testee.asByte();
+        assertEquals(asByte.getClass(), Byte.class);
+        assertEquals(asByte, Byte.valueOf("12"));
+    }
+
+    public void testAsPrimitiveByte() {
+        byte asByte = testee.asPrimitiveByte();
+        assertEquals(asByte, (byte)12);
+    }
+
+    public void testAsShort() {
+        Short asShort = testee.asShort();
+        assertEquals(asShort.getClass(), Short.class);
+        assertEquals(asShort, Short.valueOf("12"));
+    }
+
+    public void testAsPrimitiveShort() {
+        short asShort = testee.asPrimitiveShort();
+        assertEquals(asShort, (short)12);
+    }
+
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testAsCharacter() {
+        testee.asCharacter();
+    }
+
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testAsChar() {
+        testee.asChar();
+    }
+
+    public void testAsInteger() {
+        Integer asInteger = testee.asInteger();
+        assertEquals(asInteger.getClass(), Integer.class);
+        assertEquals(asInteger, Integer.valueOf(12));
+    }
+
+    public void testAsInt() {
+        int asInt = testee.asInt();
+        assertEquals(asInt, 12);
+    }
+
+    public void testAsLong() {
+        Long asLong = testee.asLong();
+        assertEquals(asLong.getClass(), Long.class);
+        assertEquals(asLong, Long.valueOf(12));
+    }
+
+    public void testAsPrimitiveLong() {
+        long asLong = testee.asPrimitiveLong();
+        assertEquals(asLong, (long)12);
+    }
+
+    public void testAsDouble() {
+        Double asDouble = testee.asDouble();
+        assertEquals(asDouble.getClass(), Double.class);
+        assertEquals(asDouble, Double.valueOf(12));
+    }
+
+    public void testAsPrimitiveDouble() {
+        double asDouble = testee.asPrimitiveDouble();
+        assertEquals(asDouble, (double)12, 0.001);
+    }
+
+    public void testAsString() {
+        String asString = testee.asString();
+        assertEquals(asString.getClass(), String.class);
+        assertEquals(asString, "12");
+    }
+
+    public void testAsBigInteger() {
+        BigInteger asBigInteger = testee.asBigInteger();
+        assertEquals(asBigInteger.getClass(), BigInteger.class);
+        assertEquals(asBigInteger, BigInteger.valueOf(12L));
+    }
+
+    public void testAsBigDecimal() {
+        BigDecimal asBigDecimal = testee.asBigDecimal();
+        assertEquals(asBigDecimal.getClass(), BigDecimal.class);
+        assertEquals(asBigDecimal, BigDecimal.valueOf(12.0));
+    }
+
+    public void testIsNull() {
+        assertFalse(testee.isNull());
+    }
+
+
+
+    private static class AbstractValueImpl extends AbstractValue<AbstractValueImpl> {
+
+        private Object value;
+        protected AbstractValueImpl(Class<AbstractValueImpl> metaType, Object value) {
+            super(metaType);
+            this.value = value;
+        }
+
+        @Override
+        public Object getValue() {
+            return value;
+        }
+
+        @Override
+        public int compareTo(AbstractValueImpl other) {
+            return 0;
+        }
+    }
 }

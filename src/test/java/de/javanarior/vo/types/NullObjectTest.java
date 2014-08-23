@@ -15,7 +15,12 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.OtherStringValue;
@@ -24,41 +29,41 @@ import de.javanarior.vo.types.helper.StringValue;
 import de.javanarior.vo.types.helper.StringValueNullObject;
 
 @Test
-public class NullObjectTest extends AbstractValueTest {
+public class NullObjectTest {
 
     protected static final StringValue STRING_NULL_OBJECT = new StringValueNullObject();
     protected static final StringValue OTHER_STRING_NULL_OBJECT = new StringValueNullObject();
     protected static final OtherStringValue OTHER_TYPE_NULL_OBJECT = new OtherStringValueNullObject();
 
     public void testIsNull() {
-        Assert.assertTrue(STRING_NULL_OBJECT.isNull());
+        assertTrue(STRING_NULL_OBJECT.isNull());
     }
 
     public void testHashCodeNotEqualsForDifferentTypes() {
-        Assert.assertNotEquals(STRING_NULL_OBJECT.hashCode(), OTHER_TYPE_NULL_OBJECT.hashCode());
+        assertNotEquals(STRING_NULL_OBJECT.hashCode(), OTHER_TYPE_NULL_OBJECT.hashCode());
     }
 
     public void testHashCodeEqualsForEqualTypes() {
-        Assert.assertEquals(STRING_NULL_OBJECT.hashCode(), OTHER_STRING_NULL_OBJECT.hashCode());
+        assertEquals(STRING_NULL_OBJECT.hashCode(), OTHER_STRING_NULL_OBJECT.hashCode());
     }
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(STRING_NULL_OBJECT.equals(OTHER_TYPE_NULL_OBJECT));
-        Assert.assertFalse(OTHER_TYPE_NULL_OBJECT.equals(STRING_NULL_OBJECT));
+        assertFalse(STRING_NULL_OBJECT.equals(OTHER_TYPE_NULL_OBJECT));
+        assertFalse(OTHER_TYPE_NULL_OBJECT.equals(STRING_NULL_OBJECT));
     }
 
     public void testEqualsForEqualTypes() {
-        Assert.assertTrue(STRING_NULL_OBJECT.equals(STRING_NULL_OBJECT));
-        Assert.assertTrue(STRING_NULL_OBJECT.equals(OTHER_STRING_NULL_OBJECT));
-        Assert.assertTrue(OTHER_STRING_NULL_OBJECT.equals(STRING_NULL_OBJECT));
+        assertTrue(STRING_NULL_OBJECT.equals(STRING_NULL_OBJECT));
+        assertTrue(STRING_NULL_OBJECT.equals(OTHER_STRING_NULL_OBJECT));
+        assertTrue(OTHER_STRING_NULL_OBJECT.equals(STRING_NULL_OBJECT));
     }
 
     public void testEqualsForNull() {
-        Assert.assertTrue(STRING_NULL_OBJECT.equals(null));
+        assertTrue(STRING_NULL_OBJECT.equals(null));
     }
 
     public void testGetValue() {
-        Assert.assertNull(STRING_NULL_OBJECT.getValue());
+        assertNull(STRING_NULL_OBJECT.getValue());
     }
 
     @Test(expectedExceptions = UnsupportedOperationException.class)

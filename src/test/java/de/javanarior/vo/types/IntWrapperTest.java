@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.IntValue;
@@ -32,24 +35,24 @@ public class IntWrapperTest {
     private static final OtherIntValue OTHER_TYPE_ONE = new OtherIntValueImpl(1);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsInt() {
-        Assert.assertEquals(ONE.asInt(), 1);
-        Assert.assertEquals(1, ONE.asInt());
+        assertEquals(ONE.asInt(), 1);
+        assertEquals(1, ONE.asInt());
     }
 
     public void testAsInteger() {
-        Assert.assertEquals(ONE.asInteger(), Integer.valueOf(1));
-        Assert.assertEquals(Integer.valueOf(1), ONE.asInteger());
+        assertEquals(ONE.asInteger(), Integer.valueOf(1));
+        assertEquals(Integer.valueOf(1), ONE.asInteger());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
     }
 
 }
