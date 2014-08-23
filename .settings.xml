@@ -4,6 +4,7 @@
 
     <profiles>
         <profile>
+            <id>bintray-javanarior</id>
             <repositories>
                 <repository>
                     <snapshots>
@@ -31,7 +32,7 @@
 
 
     <activeProfiles>
-        <activeProfile>bintray</activeProfile>
+        <activeProfile>bintray-javanarior</activeProfile>
     </activeProfiles>
 
 </settings>
