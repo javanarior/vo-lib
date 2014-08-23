@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.OtherCharValueImpl;
 @Test
 public class CharWrapperTest {
 
+    private static final Character ONE_VALUE = Character.valueOf('1');
     private static final CharValue ONE = new CharValueImpl('1');
     private static final CharValue TWO = new CharValueImpl('2');
     private static final CharValue ANOTHER_ONE = new CharValueImpl('1');
@@ -45,14 +46,18 @@ public class CharWrapperTest {
     }
 
     public void testAsCharacter() {
-        assertEquals(ONE.asCharacter(), Character.valueOf('1'));
-        assertEquals(Character.valueOf('1'), ONE.asCharacter());
+        assertEquals(ONE.asCharacter(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asCharacter());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

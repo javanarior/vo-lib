@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.OtherByteValueImpl;
 @Test
 public class ByteWrapperTest {
 
+    private static final Byte ONE_VALUE = Byte.valueOf("1");
     private static final ByteValue ONE = new ByteValueImpl((byte)1);
     private static final ByteValue TWO = new ByteValueImpl((byte)2);
     private static final ByteValue ANOTHER_ONE = new ByteValueImpl((byte)1);
@@ -45,14 +46,18 @@ public class ByteWrapperTest {
     }
 
     public void testAsByte() {
-        assertEquals(ONE.asByte(), Byte.valueOf("1"));
-        assertEquals(Byte.valueOf("1"), ONE.asByte());
+        assertEquals(ONE.asByte(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asByte());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.OtherLongValueImpl;
 @Test
 public class LongWrapperTest {
 
+    private static final Long ONE_VALUE = Long.valueOf(1);
     private static final LongValue ONE = new LongValueImpl(1L);
     private static final LongValue TWO = new LongValueImpl(2);
     private static final LongValue ANOTHER_ONE = new LongValueImpl(1);
@@ -45,14 +46,18 @@ public class LongWrapperTest {
     }
 
     public void testAsLong() {
-        assertEquals(ONE.asLong(), Long.valueOf(1));
-        assertEquals(Long.valueOf(1), ONE.asLong());
+        assertEquals(ONE.asLong(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asLong());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

@@ -31,10 +31,11 @@ import de.javanarior.vo.types.helper.OtherBigIntegerValueImpl;
 @Test
 public class BigIntegerWrapperTest {
 
-    private static final BigIntegerValue ONE = new BigIntegerValueImpl(BigInteger.valueOf(1L));
+    private static final BigInteger ONE_VALUE = BigInteger.valueOf(1L);
+    private static final BigIntegerValue ONE = new BigIntegerValueImpl(ONE_VALUE);
     private static final BigIntegerValue TWO = new BigIntegerValueImpl(BigInteger.valueOf(2L));
-    private static final BigIntegerValue ANOTHER_ONE = new BigIntegerValueImpl(BigInteger.valueOf(1L));
-    private static final OtherBigIntegerValue OTHER_TYPE_ONE = new OtherBigIntegerValueImpl(BigInteger.valueOf(1L));
+    private static final BigIntegerValue ANOTHER_ONE = new BigIntegerValueImpl(ONE_VALUE);
+    private static final OtherBigIntegerValue OTHER_TYPE_ONE = new OtherBigIntegerValueImpl(ONE_VALUE);
 
     public void testEqualsForDifferentTypes() {
         assertFalse(ONE.equals(OTHER_TYPE_ONE));
@@ -42,8 +43,8 @@ public class BigIntegerWrapperTest {
     }
 
     public void testAsBigInteger() {
-        assertEquals(ONE.asBigInteger(), BigInteger.valueOf(1L));
-        assertEquals(BigInteger.valueOf(1L), ONE.asBigInteger());
+        assertEquals(ONE.asBigInteger(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asBigInteger());
     }
 
     public void testCompareTo() {
@@ -55,4 +56,9 @@ public class BigIntegerWrapperTest {
     public void testAsString() {
         assertEquals(ONE.asString(), "1");
     }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
+    }
+
 }
