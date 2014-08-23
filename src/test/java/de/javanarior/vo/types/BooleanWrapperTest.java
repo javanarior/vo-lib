@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.BooleanValue;
@@ -32,24 +35,24 @@ public class BooleanWrapperTest {
     private static final OtherBooleanValue OTHER_TYPE_ONE = new OtherBooleanValueImpl(true);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testPrimitiveBoolean() {
-        Assert.assertEquals(ONE.asPrimitiveBoolean(), true);
-        Assert.assertEquals(true, ONE.asPrimitiveBoolean());
+        assertEquals(ONE.asPrimitiveBoolean(), true);
+        assertEquals(true, ONE.asPrimitiveBoolean());
     }
 
     public void testAsBoolean() {
-        Assert.assertEquals(ONE.asBoolean(), Boolean.valueOf(true));
-        Assert.assertEquals(Boolean.valueOf(true), ONE.asBoolean());
+        assertEquals(ONE.asBoolean(), Boolean.valueOf(true));
+        assertEquals(Boolean.valueOf(true), ONE.asBoolean());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) > 0);
-        Assert.assertTrue(TWO.compareTo(ONE) < 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) > 0);
+        assertTrue(TWO.compareTo(ONE) < 0);
     }
 
 }

@@ -32,7 +32,7 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
      * Create a abstract value type with type {@code metaType}.
      *
      * @param metaType
-     *            - the type
+     *            - the value type
      */
     protected AbstractValue(Class<T> metaType) {
         super();
@@ -152,12 +152,12 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
 
     @Override
     public BigInteger asBigInteger() {
-        return BigInteger.valueOf(asLong());
+        return BigInteger.valueOf(asPrimitiveLong());
     }
 
     @Override
     public BigDecimal asBigDecimal() {
-        return BigDecimal.valueOf(asDouble());
+        return BigDecimal.valueOf(asPrimitiveDouble());
     }
 
     @Override

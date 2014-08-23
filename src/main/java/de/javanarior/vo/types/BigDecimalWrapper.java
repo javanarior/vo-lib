@@ -30,10 +30,10 @@ public abstract class BigDecimalWrapper<T extends Value<T>> extends AbstractValu
     /**
      * Create BigDecimal Type from BigDecimal value.
      *
+     * @param metaType
+     *            - the value type
      * @param value
-     *            value for the object
-     * @param allowEmptyString
-     *            set to {@code true} to allow empty strings
+     *            - value for the object
      */
     protected BigDecimalWrapper(Class<T> metaType, BigDecimal value) {
         super(metaType);
