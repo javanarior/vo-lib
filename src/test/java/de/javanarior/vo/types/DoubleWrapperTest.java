@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.OtherDoubleValueImpl;
 @Test
 public class DoubleWrapperTest {
 
+    private static final Double ONE_VALUE = Double.valueOf(1.1);
     private static final DoubleValue ONE = new DoubleValueImpl(1.1);
     private static final DoubleValue TWO = new DoubleValueImpl(2.2);
     private static final DoubleValue ANOTHER_ONE = new DoubleValueImpl(1.1);
@@ -45,14 +46,18 @@ public class DoubleWrapperTest {
     }
 
     public void testAsDouble() {
-        assertEquals(ONE.asDouble(), Double.valueOf(1.1));
-        assertEquals(Double.valueOf(1.1), ONE.asDouble());
+        assertEquals(ONE.asDouble(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asDouble());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testgetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

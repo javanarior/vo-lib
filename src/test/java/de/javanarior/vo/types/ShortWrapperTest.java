@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.ShortValueImpl;
 @Test
 public class ShortWrapperTest {
 
+    private static final Short ONE_VALUE = Short.valueOf("1");
     private static final ShortValue ONE = new ShortValueImpl((short)1);
     private static final ShortValue TWO = new ShortValueImpl((short)2);
     private static final ShortValue ANOTHER_ONE = new ShortValueImpl((short)1);
@@ -45,14 +46,18 @@ public class ShortWrapperTest {
     }
 
     public void testAsShort() {
-        assertEquals(ONE.asShort(), Short.valueOf("1"));
-        assertEquals(Short.valueOf("1"), ONE.asShort());
+        assertEquals(ONE.asShort(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asShort());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

@@ -31,10 +31,11 @@ import de.javanarior.vo.types.helper.OtherBigDecimalValueImpl;
 @Test
 public class BigDecimalWrapperTest {
 
-    private static final BigDecimalValue ONE = new BigDecimalValueImpl(BigDecimal.valueOf(1.1));
+    private static final BigDecimal ONE_VALUE = BigDecimal.valueOf(1.1);
+    private static final BigDecimalValue ONE = new BigDecimalValueImpl(ONE_VALUE);
     private static final BigDecimalValue TWO = new BigDecimalValueImpl(BigDecimal.valueOf(2.2));
-    private static final BigDecimalValue ANOTHER_ONE = new BigDecimalValueImpl(BigDecimal.valueOf(1.1));
-    private static final OtherBigDecimalValue OTHER_TYPE_ONE = new OtherBigDecimalValueImpl(BigDecimal.valueOf(1.1));
+    private static final BigDecimalValue ANOTHER_ONE = new BigDecimalValueImpl(ONE_VALUE);
+    private static final OtherBigDecimalValue OTHER_TYPE_ONE = new OtherBigDecimalValueImpl(ONE_VALUE);
 
     public void testEqualsForDifferentTypes() {
         assertFalse(ONE.equals(OTHER_TYPE_ONE));
@@ -42,8 +43,8 @@ public class BigDecimalWrapperTest {
     }
 
     public void testAsBigDecimal() {
-        assertEquals(ONE.asBigDecimal(), BigDecimal.valueOf(1.1));
-        assertEquals(BigDecimal.valueOf(1.1), ONE.asBigDecimal());
+        assertEquals(ONE.asBigDecimal(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asBigDecimal());
     }
 
     public void testCompareTo() {
@@ -54,6 +55,10 @@ public class BigDecimalWrapperTest {
 
     public void testAsString() {
         assertEquals(ONE.asString(), "1.1");
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

@@ -29,10 +29,11 @@ import de.javanarior.vo.types.helper.StringValueImpl;
 @Test
 public class StringWrapperTest {
 
-    private static final StringValue ONE = new StringValueImpl("one");
+    private static final String ONE_VALUE = "one";
+    private static final StringValue ONE = new StringValueImpl(ONE_VALUE);
     private static final StringValue TWO = new StringValueImpl("2");
-    private static final StringValue ANOTHER_ONE = new StringValueImpl("one");
-    private static final OtherStringValue OTHER_TYPE_ONE = new OtherStringValueImpl("one");
+    private static final StringValue ANOTHER_ONE = new StringValueImpl(ONE_VALUE);
+    private static final OtherStringValue OTHER_TYPE_ONE = new OtherStringValueImpl(ONE_VALUE);
 
     public void testEqualsForDifferentTypes() {
         assertFalse(ONE.equals(OTHER_TYPE_ONE));
@@ -40,14 +41,18 @@ public class StringWrapperTest {
     }
 
     public void testAsString() {
-        assertEquals(ONE.asString(), "one");
-        assertEquals("one", ONE.asString());
+        assertEquals(ONE.asString(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asString());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) > 0);
         assertTrue(TWO.compareTo(ONE) < 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

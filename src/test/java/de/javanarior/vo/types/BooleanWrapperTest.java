@@ -45,7 +45,7 @@ public class BooleanWrapperTest {
     }
 
     public void testAsBoolean() {
-        assertEquals(ONE.asBoolean(), Boolean.valueOf(true));
+        assertEquals(ONE.asBoolean(), Boolean.TRUE);
         assertEquals(Boolean.valueOf(true), ONE.asBoolean());
     }
 
@@ -55,4 +55,7 @@ public class BooleanWrapperTest {
         assertTrue(TWO.compareTo(ONE) < 0);
     }
 
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), Boolean.TRUE);
+    }
 }

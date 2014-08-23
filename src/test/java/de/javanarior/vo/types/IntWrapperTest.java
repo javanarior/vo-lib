@@ -29,6 +29,7 @@ import de.javanarior.vo.types.helper.OtherIntValueImpl;
 @Test
 public class IntWrapperTest {
 
+    private static final Integer ONE_VALUE = Integer.valueOf(1);
     private static final IntValue ONE = new IntValueImpl(1);
     private static final IntValue TWO = new IntValueImpl(2);
     private static final IntValue ANOTHER_ONE = new IntValueImpl(1);
@@ -45,14 +46,18 @@ public class IntWrapperTest {
     }
 
     public void testAsInteger() {
-        assertEquals(ONE.asInteger(), Integer.valueOf(1));
-        assertEquals(Integer.valueOf(1), ONE.asInteger());
+        assertEquals(ONE.asInteger(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asInteger());
     }
 
     public void testCompareTo() {
         assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
         assertTrue(ONE.compareTo(TWO) < 0);
         assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }
