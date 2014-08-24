@@ -27,6 +27,11 @@ public abstract class CharWrapper<T extends Value<T>> extends AbstractValue<T> {
 
     /**
      * Create Character Type with char value.
+     *
+     * @param metaType
+     *            - the value type
+     * @param value
+     *            - value for the object
      */
     protected CharWrapper(Class<T> metaType, char value) {
         super(metaType);

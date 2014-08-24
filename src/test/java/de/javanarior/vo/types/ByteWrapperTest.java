@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.ByteValue;
@@ -26,30 +29,35 @@ import de.javanarior.vo.types.helper.OtherByteValueImpl;
 @Test
 public class ByteWrapperTest {
 
+    private static final Byte ONE_VALUE = Byte.valueOf("1");
     private static final ByteValue ONE = new ByteValueImpl((byte)1);
     private static final ByteValue TWO = new ByteValueImpl((byte)2);
     private static final ByteValue ANOTHER_ONE = new ByteValueImpl((byte)1);
     private static final OtherByteValue OTHER_TYPE_ONE = new OtherByteValueImpl((byte)1);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsPrimitiveByte() {
-        Assert.assertEquals(ONE.asPrimitiveByte(), (byte)1);
-        Assert.assertEquals((byte)1, ONE.asPrimitiveByte());
+        assertEquals(ONE.asPrimitiveByte(), (byte)1);
+        assertEquals((byte)1, ONE.asPrimitiveByte());
     }
 
     public void testAsByte() {
-        Assert.assertEquals(ONE.asByte(), Byte.valueOf("1"));
-        Assert.assertEquals(Byte.valueOf("1"), ONE.asByte());
+        assertEquals(ONE.asByte(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asByte());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

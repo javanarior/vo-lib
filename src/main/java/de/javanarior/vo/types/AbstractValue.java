@@ -29,10 +29,10 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
     private final Class<T> metaType;
 
     /**
-     * Create a abstract value type with type {@code metaType}.
+     * Create a abstract value type with {@code metaType}.
      *
      * @param metaType
-     *            - the type
+     *            - the value type
      */
     protected AbstractValue(Class<T> metaType) {
         super();
@@ -47,10 +47,7 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 107;
-        result = prime * result + ((metaType.getName() == null) ? 0 : metaType.getName().hashCode());
-        return result;
+        return 107 * metaType.getName().hashCode();
     }
 
     @Override
@@ -152,12 +149,12 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
 
     @Override
     public BigInteger asBigInteger() {
-        return BigInteger.valueOf(asLong());
+        return BigInteger.valueOf(asPrimitiveLong());
     }
 
     @Override
     public BigDecimal asBigDecimal() {
-        return BigDecimal.valueOf(asDouble());
+        return BigDecimal.valueOf(asPrimitiveDouble());
     }
 
     @Override

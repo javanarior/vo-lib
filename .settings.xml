@@ -4,6 +4,7 @@
 
     <profiles>
         <profile>
+            <id>bintray-javanarior</id>
             <repositories>
                 <repository>
                     <snapshots>
@@ -24,14 +25,13 @@
                     <url>http://dl.bintray.com/javanarior/maven</url>
                 </pluginRepository>
             </pluginRepositories>
-            <id>bintray</id>
         </profile>
     </profiles>
 
 
 
     <activeProfiles>
-        <activeProfile>bintray</activeProfile>
+        <activeProfile>bintray-javanarior</activeProfile>
     </activeProfiles>
 
 </settings>

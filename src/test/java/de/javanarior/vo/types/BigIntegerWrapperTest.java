@@ -15,9 +15,12 @@
  */
 package de.javanarior.vo.types;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import java.math.BigInteger;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.BigIntegerValue;
@@ -26,27 +29,36 @@ import de.javanarior.vo.types.helper.OtherBigIntegerValue;
 import de.javanarior.vo.types.helper.OtherBigIntegerValueImpl;
 
 @Test
-public class BigIntegerWrapperTest extends AbstractValueTest {
+public class BigIntegerWrapperTest {
 
-    private static final BigIntegerValue ONE = new BigIntegerValueImpl(BigInteger.valueOf(1L));
+    private static final BigInteger ONE_VALUE = BigInteger.valueOf(1L);
+    private static final BigIntegerValue ONE = new BigIntegerValueImpl(ONE_VALUE);
     private static final BigIntegerValue TWO = new BigIntegerValueImpl(BigInteger.valueOf(2L));
-    private static final BigIntegerValue ANOTHER_ONE = new BigIntegerValueImpl(BigInteger.valueOf(1L));
-    private static final OtherBigIntegerValue OTHER_TYPE_ONE = new OtherBigIntegerValueImpl(BigInteger.valueOf(1L));
+    private static final BigIntegerValue ANOTHER_ONE = new BigIntegerValueImpl(ONE_VALUE);
+    private static final OtherBigIntegerValue OTHER_TYPE_ONE = new OtherBigIntegerValueImpl(ONE_VALUE);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsBigInteger() {
-        Assert.assertEquals(ONE.asBigInteger(), BigInteger.valueOf(1L));
-        Assert.assertEquals(BigInteger.valueOf(1L), ONE.asBigInteger());
+        assertEquals(ONE.asBigInteger(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asBigInteger());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testAsString() {
+        assertEquals(ONE.asString(), "1");
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

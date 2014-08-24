@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.OtherStringValue;
@@ -24,27 +27,32 @@ import de.javanarior.vo.types.helper.StringValue;
 import de.javanarior.vo.types.helper.StringValueImpl;
 
 @Test
-public class StringWrapperTest extends AbstractValueTest {
+public class StringWrapperTest {
 
-    private static final StringValue ONE = new StringValueImpl("one");
+    private static final String ONE_VALUE = "one";
+    private static final StringValue ONE = new StringValueImpl(ONE_VALUE);
     private static final StringValue TWO = new StringValueImpl("2");
-    private static final StringValue ANOTHER_ONE = new StringValueImpl("one");
-    private static final OtherStringValue OTHER_TYPE_ONE = new OtherStringValueImpl("one");
+    private static final StringValue ANOTHER_ONE = new StringValueImpl(ONE_VALUE);
+    private static final OtherStringValue OTHER_TYPE_ONE = new OtherStringValueImpl(ONE_VALUE);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsString() {
-        Assert.assertEquals(ONE.asString(), "one");
-        Assert.assertEquals("one", ONE.asString());
+        assertEquals(ONE.asString(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asString());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) > 0);
-        Assert.assertTrue(TWO.compareTo(ONE) < 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) > 0);
+        assertTrue(TWO.compareTo(ONE) < 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

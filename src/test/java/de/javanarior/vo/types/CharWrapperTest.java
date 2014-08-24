@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.CharValue;
@@ -26,30 +29,35 @@ import de.javanarior.vo.types.helper.OtherCharValueImpl;
 @Test
 public class CharWrapperTest {
 
+    private static final Character ONE_VALUE = Character.valueOf('1');
     private static final CharValue ONE = new CharValueImpl('1');
     private static final CharValue TWO = new CharValueImpl('2');
     private static final CharValue ANOTHER_ONE = new CharValueImpl('1');
     private static final OtherCharValue OTHER_TYPE_ONE = new OtherCharValueImpl('1');
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsChar() {
-        Assert.assertEquals(ONE.asChar(), '1');
-        Assert.assertEquals('1', ONE.asChar());
+        assertEquals(ONE.asChar(), '1');
+        assertEquals('1', ONE.asChar());
     }
 
     public void testAsCharacter() {
-        Assert.assertEquals(ONE.asCharacter(), Character.valueOf('1'));
-        Assert.assertEquals(Character.valueOf('1'), ONE.asCharacter());
+        assertEquals(ONE.asCharacter(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asCharacter());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testGetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

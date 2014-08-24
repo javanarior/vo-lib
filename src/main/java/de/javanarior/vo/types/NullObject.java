@@ -23,6 +23,12 @@ package de.javanarior.vo.types;
  */
 public abstract class NullObject<T extends Value<T>> extends AbstractValue<T> {
 
+    /**
+     * Create a new NullObject instance.
+     *
+     * @param metaType
+     *            - the value type
+     */
     protected NullObject(Class<T> metaType) {
         super(metaType);
     }
