@@ -25,7 +25,6 @@
                     <url>http://dl.bintray.com/javanarior/maven</url>
                 </pluginRepository>
             </pluginRepositories>
-            <id>bintray</id>
         </profile>
     </profiles>
 
