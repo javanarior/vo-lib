@@ -201,52 +201,52 @@
 
 
 
-        <profile>
+<!--         <profile> -->
 
-            <id>qa-pmd</id>
+<!--             <id>qa-pmd</id> -->
 
-            <activation>
-                <property>
-                    <name>build</name>
-                    <value>qa</value>
-                </property>
-            </activation>
+<!--             <activation> -->
+<!--                 <property> -->
+<!--                     <name>build</name> -->
+<!--                     <value>qa</value> -->
+<!--                 </property> -->
+<!--             </activation> -->
 
-            <build>
-                <plugins>
+<!--             <build> -->
+<!--                 <plugins> -->
 
-                    <plugin>
-                        <artifactId>maven-pmd-plugin</artifactId>
+<!--                     <plugin> -->
+<!--                         <artifactId>maven-pmd-plugin</artifactId> -->
 
-                        <configuration>
-                            <includeTests>true</includeTests>
-                            <targetJdk>${java.version.source}</targetJdk>
-                            <linkXref>true</linkXref>
-                            <rulesets>
-                                <ruleset>pmd/javanarior-pmd.xml</ruleset>
-                            </rulesets>
-                            <excludes>
-                                <exclude>**/generated/*</exclude>
-                                <exclude>**/generated-sources/*.java</exclude>
-                            </excludes>
-                        </configuration>
+<!--                         <configuration> -->
+<!--                             <includeTests>true</includeTests> -->
+<!--                             <targetJdk>${java.version.source}</targetJdk> -->
+<!--                             <linkXref>true</linkXref> -->
+<!--                             <rulesets> -->
+<!--                                 <ruleset>pmd/javanarior-pmd.xml</ruleset> -->
+<!--                             </rulesets> -->
+<!--                             <excludes> -->
+<!--                                 <exclude>**/generated/*</exclude> -->
+<!--                                 <exclude>**/generated-sources/*.java</exclude> -->
+<!--                             </excludes> -->
+<!--                         </configuration> -->
 
-                        <executions>
-                            <execution>
-                                <id>pmd/cpd-analysis</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>pmd</goal>
-                                    <goal>cpd</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+<!--                         <executions> -->
+<!--                             <execution> -->
+<!--                                 <id>pmd/cpd-analysis</id> -->
+<!--                                 <phase>verify</phase> -->
+<!--                                 <goals> -->
+<!--                                     <goal>pmd</goal> -->
+<!--                                     <goal>cpd</goal> -->
+<!--                                 </goals> -->
+<!--                             </execution> -->
+<!--                         </executions> -->
+<!--                     </plugin> -->
 
-                </plugins>
-            </build>
+<!--                 </plugins> -->
+<!--             </build> -->
 
-        </profile>
+<!--         </profile> -->
 
 
 
