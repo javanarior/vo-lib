@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 Sven von Pluto - javanarior@gmail.com
+ * Copyright (C) 2014 Sven von Pluto - javanarior (a) gmail dot com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ public class AbstractValueTest {
 
     public void testAsPrimitiveLong() {
         long asLong = testee.asPrimitiveLong();
-        assertEquals(asLong, (long)12);
+        assertEquals(asLong, 12);
     }
 
     public void testAsDouble() {
@@ -110,7 +110,7 @@ public class AbstractValueTest {
 
     public void testAsPrimitiveDouble() {
         double asDouble = testee.asPrimitiveDouble();
-        assertEquals(asDouble, (double)12, 0.001);
+        assertEquals(asDouble, 12, 0.001);
     }
 
     public void testAsString() {
