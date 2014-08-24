@@ -15,7 +15,10 @@
  */
 package de.javanarior.vo.types;
 
-import org.testng.Assert;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import org.testng.annotations.Test;
 
 import de.javanarior.vo.types.helper.DoubleValue;
@@ -26,30 +29,35 @@ import de.javanarior.vo.types.helper.OtherDoubleValueImpl;
 @Test
 public class DoubleWrapperTest {
 
+    private static final Double ONE_VALUE = Double.valueOf(1.1);
     private static final DoubleValue ONE = new DoubleValueImpl(1.1);
     private static final DoubleValue TWO = new DoubleValueImpl(2.2);
     private static final DoubleValue ANOTHER_ONE = new DoubleValueImpl(1.1);
     private static final OtherDoubleValue OTHER_TYPE_ONE = new OtherDoubleValueImpl(1.1);
 
     public void testEqualsForDifferentTypes() {
-        Assert.assertFalse(ONE.equals(OTHER_TYPE_ONE));
-        Assert.assertFalse(OTHER_TYPE_ONE.equals(ONE));
+        assertFalse(ONE.equals(OTHER_TYPE_ONE));
+        assertFalse(OTHER_TYPE_ONE.equals(ONE));
     }
 
     public void testAsPrimitiveDouble() {
-        Assert.assertEquals(ONE.asPrimitiveDouble(), 1.1);
-        Assert.assertEquals(1.1, ONE.asPrimitiveDouble());
+        assertEquals(ONE.asPrimitiveDouble(), 1.1, 0.001);
+        assertEquals(1.1, ONE.asPrimitiveDouble(), 0.001);
     }
 
     public void testAsDouble() {
-        Assert.assertEquals(ONE.asDouble(), Double.valueOf(1.1));
-        Assert.assertEquals(Double.valueOf(1.1), ONE.asDouble());
+        assertEquals(ONE.asDouble(), ONE_VALUE);
+        assertEquals(ONE_VALUE, ONE.asDouble());
     }
 
     public void testCompareTo() {
-        Assert.assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
-        Assert.assertTrue(ONE.compareTo(TWO) < 0);
-        Assert.assertTrue(TWO.compareTo(ONE) > 0);
+        assertEquals(ONE.compareTo(ANOTHER_ONE), 0);
+        assertTrue(ONE.compareTo(TWO) < 0);
+        assertTrue(TWO.compareTo(ONE) > 0);
+    }
+
+    public void testgetValue() {
+        assertEquals(ONE.getValue(), ONE_VALUE);
     }
 
 }

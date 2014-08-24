@@ -16,10 +16,15 @@
 
 package de.javanarior.vo.types;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.Assert.assertNotSame;
+import static org.testng.Assert.assertTrue;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -59,34 +64,34 @@ public class WrapperTest {
 
     @Test(dataProvider = "getValue")
     public void testHashCodeNotEqualForDifferentValues(Value<?> one, Value<?> anotherOne, Value<?> two) {
-        Assert.assertNotEquals(one.hashCode(), two.hashCode());
-        Assert.assertNotEquals(anotherOne.hashCode(), two.hashCode());
+        assertNotEquals(one.hashCode(), two.hashCode());
+        assertNotEquals(anotherOne.hashCode(), two.hashCode());
     }
 
     @Test(dataProvider = "getValue")
     public void testHashCodeEqualForEqualValues(Value<?> one, Value<?> anotherOne, Value<?> two) {
-        Assert.assertNotSame(one, anotherOne);
-        Assert.assertEquals(one.hashCode(), anotherOne.hashCode());
-        Assert.assertEquals(one.hashCode(), one.hashCode());
+        assertNotSame(one, anotherOne);
+        assertEquals(one.hashCode(), anotherOne.hashCode());
+        assertEquals(one.hashCode(), one.hashCode());
     }
 
     @Test(dataProvider = "getValue")
     public void testEqualsForDifferentValues(Value<?> one, Value<?> anotherOne, Value<?> two) {
-        Assert.assertFalse(one.equals(two));
-        Assert.assertFalse(two.equals(one));
+        assertFalse(one.equals(two));
+        assertFalse(two.equals(one));
     }
 
     @Test(dataProvider = "getValue")
     public void testEqualsForEqualValues(Value<?> one, Value<?> anotherOne, Value<?> two) {
-        Assert.assertNotSame(one, anotherOne);
-        Assert.assertTrue(one.equals(anotherOne));
-        Assert.assertTrue(anotherOne.equals(one));
-        Assert.assertTrue(one.equals(one));
+        assertNotSame(one, anotherOne);
+        assertTrue(one.equals(anotherOne));
+        assertTrue(anotherOne.equals(one));
+        assertTrue(one.equals(one));
     }
 
     @Test(dataProvider = "getValue")
     public void testEqualsForNull(Value<?> one, Value<?> anotherOne, Value<?> two) {
-        Assert.assertFalse(one.equals(null));
+        assertFalse(one.equals(null));
     }
 
 }

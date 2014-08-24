@@ -28,10 +28,10 @@ public abstract class StringWrapper<T extends Value<T>> extends AbstractValue<T>
     /**
      * Create String Type from String value.
      *
+     * @param metaType
+     *            - the value type
      * @param value
-     *            value for the object
-     * @param allowEmptyString
-     *            set to {@code true} to allow empty strings
+     *            - value for the object
      */
     protected StringWrapper(Class<T> metaType, String value) {
         super(metaType);
