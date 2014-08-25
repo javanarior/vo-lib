@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * Abstract base class for value objects.
+ * Base class for value objects.
  *
  * @param <T>
  *            the value type
@@ -29,7 +29,7 @@ public abstract class AbstractValue<T extends Value<T>> implements Value<T> {
     private final Class<T> metaType;
 
     /**
-     * Create a abstract value type with {@code metaType}.
+     * Create a value type with {@code metaType}.
      *
      * @param metaType
      *            - the value type
